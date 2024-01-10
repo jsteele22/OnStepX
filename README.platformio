@@ -1,0 +1,27 @@
+
+This project has been modified to enable building with Platformio.
+This allows easy management of build environments.
+
+Important changes are as follows:
+
+1) Created file platfomio.ini . This sets up custom build enviroments for
+(in this case) a Celestron and a Losmandy OnStepX controller.
+
+
+2) OnStepX.ino copied to OnStepX.ino.cpp, as required by
+PlatformIO. Any upstream changes to OnStepX.ino file must be reflected
+in the .cpp file as well.
+
+3) The original Config.h has been copied to Config.h.defaults.  A new
+file named Config.h will include Config.h.defaults, followed by a
+build-specific file, e.g., Config.h.Celestron or Config.h.Losmandy.
+This behavior is controlled by C Preprocessor macros (-DCELESTRON or
+-DLOSMANDY) which are set by PlatformIO according to the
+platformio.ini file.
+
+4) The Files Config.h.Celestron, etc., files should be trimmed down to
+include only those #defines likely to be altered.  Each of these must
+first be #undef-ed to avoid preprocessor warnings.
+
+5) The file .gitignore has been modified to ignore the
+.pio/ directory created by PlatformIO.

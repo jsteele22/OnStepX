@@ -1,0 +1,130 @@
+#undef PINMAP                        
+#undef SERIAL_A_BAUD_DEFAULT         
+#undef SERIAL_B_BAUD_DEFAULT        
+#undef STATUS_LED                   
+#undef AXIS1_DRIVER_MODEL           
+#undef AXIS1_STEPS_PER_DEGREE      
+#undef AXIS1_REVERSE               
+#undef AXIS1_LIMIT_MIN             
+#undef AXIS1_LIMIT_MAX             
+#undef AXIS1_DRIVER_MICROSTEPS     
+#undef AXIS1_DRIVER_MICROSTEPS_GOTO
+#undef AXIS1_DRIVER_IHOLD          
+#undef AXIS1_DRIVER_IRUN           
+#undef AXIS1_DRIVER_IGOTO          
+#undef AXIS1_DRIVER_STATUS         
+#undef AXIS1_DRIVER_DECAY          
+#undef AXIS1_DRIVER_DECAY_GOTO     
+#undef AXIS1_POWER_DOWN            
+#undef AXIS2_DRIVER_MODEL          
+#undef AXIS2_STEPS_PER_DEGREE      
+#undef AXIS2_REVERSE               
+#undef AXIS2_LIMIT_MIN             
+#undef AXIS2_LIMIT_MAX             
+#undef AXIS2_DRIVER_MICROSTEPS     
+#undef AXIS2_DRIVER_MICROSTEPS_GOTO
+#undef AXIS2_DRIVER_IHOLD          
+#undef AXIS2_DRIVER_IRUN           
+#undef AXIS2_DRIVER_IGOTO          
+#undef AXIS2_DRIVER_STATUS         
+#undef AXIS2_DRIVER_DECAY          
+#undef AXIS2_DRIVER_DECAY_GOTO     
+#undef AXIS2_POWER_DOWN            
+#undef MOUNT_TYPE                  
+#undef MOUNT_COORDS          
+#undef MOUNT_ENABLE_IN_STANDBY
+#undef TIME_LOCATION_SOURCE   
+#undef STATUS_MOUNT_LED       
+#undef STATUS_BUZZER          
+#undef STATUS_BUZZER_DEFAULT  
+#undef STATUS_BUZZER_MEMORY   
+#undef AXIS4_DRIVER_MODEL            
+#undef AXIS4_SLEW_RATE_BASE_DESIRED  
+#undef AXIS4_SLEW_RATE_MINIMUM       
+#undef AXIS4_STEPS_PER_MICRON        
+#undef AXIS4_REVERSE                 
+#undef AXIS4_LIMIT_MIN               
+#undef AXIS4_LIMIT_MAX               
+#undef AXIS4_POWER_DOWN              
+
+#define PINMAP                        MaxPCB4
+
+
+// SERIAL PORT COMMAND CHANNELS ----------
+#define SERIAL_A_BAUD_DEFAULT         9600
+#define SERIAL_B_BAUD_DEFAULT        115200
+
+// STATUS -------------------------------
+#define STATUS_LED                    ON
+
+
+// MOUNT =====================================
+
+
+// AXIS1 RA
+#define AXIS1_DRIVER_MODEL            TMC2130
+#define AXIS1_STEPS_PER_DEGREE      102400 //     = 256 (microsteps) * 400 (steps)  1 worm rev = 1 degree
+                                          //         n = (stepper_steps * micro_steps * overall_gear_reduction)/360.0
+#define AXIS1_REVERSE                 OFF 
+#define AXIS1_LIMIT_MIN              -180 
+#define AXIS1_LIMIT_MAX               180 
+#define AXIS1_DRIVER_MICROSTEPS       256 
+#define AXIS1_DRIVER_MICROSTEPS_GOTO    8 
+#define AXIS1_DRIVER_IHOLD            OFF //    OFF, n, (mA.) Current during standstill. OFF uses IRUN/2.0                
+#define AXIS1_DRIVER_IRUN             800 //    OFF, n, (mA.) Current during tracking, appropriate for stepper/driver/etc.
+#define AXIS1_DRIVER_IGOTO            OFF //    OFF, n, (mA.) Current during slews. OFF uses IRUN.                        
+#define AXIS1_DRIVER_STATUS           ON 
+#define AXIS1_DRIVER_DECAY            OFF //    OFF, Tracking decay mode default override. TMC default is STEALTHCHOP.
+#define AXIS1_DRIVER_DECAY_GOTO       OFF //    OFF, Decay mode goto default override. TMC default is SPREADCYCLE.    
+#define AXIS1_POWER_DOWN              ON
+
+// AXIS2 DEC
+#define AXIS2_DRIVER_MODEL            TMC2130
+#define AXIS2_STEPS_PER_DEGREE      102400 //   = 256 (microsteps) * 400 (steps)  1 worm rev = 1 degree
+                                          //         n = (stepper_steps * micro_steps * overall_gear_reduction)/360.0
+#define AXIS2_REVERSE                 OFF 
+#define AXIS2_LIMIT_MIN               -90 
+#define AXIS2_LIMIT_MAX                90 
+#define AXIS2_DRIVER_MICROSTEPS       256 
+#define AXIS2_DRIVER_MICROSTEPS_GOTO    8 
+#define AXIS2_DRIVER_IHOLD            OFF //    OFF, n, (mA.) Current during standstill. OFF uses IRUN/2.0                  
+#define AXIS2_DRIVER_IRUN             800 //    OFF, n, (mA.) Current during tracking, appropriate for stepper/driver/etc.  
+#define AXIS2_DRIVER_IGOTO            OFF //    OFF, n, (mA.) Current during slews. OFF uses IRUN.                          
+#define AXIS2_DRIVER_STATUS           ON
+#define AXIS2_DRIVER_DECAY            OFF //    OFF, Tracking decay mode default override. TMC default is STEALTHCHOP. 
+#define AXIS2_DRIVER_DECAY_GOTO       OFF //    OFF, Decay mode goto default override. TMC default is SPREADCYCLE.     
+#define AXIS2_POWER_DOWN              ON //    
+
+
+// MOUNT --------------------------------
+#define MOUNT_TYPE                    GEM
+#define MOUNT_COORDS          TOPOCENTRIC
+#define MOUNT_ENABLE_IN_STANDBY       OFF
+
+// TIME AND LOCATION -----------------------
+#define TIME_LOCATION_SOURCE          TEENSY
+
+// STATUS -------------------------------
+#define STATUS_MOUNT_LED              ON
+#define STATUS_BUZZER                 ON //    OFF, ON, n. Where n=100..6000 (Hz freq.) for speaker. ON for piezo buzzer.
+#define STATUS_BUZZER_DEFAULT         ON //    OFF, ON default starts w/buzzer enabled.                                  
+#define STATUS_BUZZER_MEMORY          ON //    OFF, ON to remember buzzer setting across power cycles.                   
+
+// ===========================================
+// FOCUSERS ==================================
+
+
+// AXIS4 FOCUSER 1 --------------------------
+#define AXIS4_DRIVER_MODEL            A4988
+#define AXIS4_SLEW_RATE_BASE_DESIRED  500 //    500, n, Where n=200..5000 (um/s.) Adjustable at run-time from       
+                                          //         1/2 to 2x this rate, and as performance considerations require.
+#define AXIS4_SLEW_RATE_MINIMUM        20 //     20, n. Where n=5..200 (um/s.) Minimum microns/second.              
+
+#define AXIS4_STEPS_PER_MICRON        0.5 
+#define AXIS4_REVERSE                 OFF 
+#define AXIS4_LIMIT_MIN                 0 //      0, n. Where n=0..500 (millimeters.) Minimum allowed position.
+#define AXIS4_LIMIT_MAX                50 //     50, n. Where n=0..500 (millimeters.) Maximum allowed position.
+
+#define AXIS4_POWER_DOWN              ON
+
+
